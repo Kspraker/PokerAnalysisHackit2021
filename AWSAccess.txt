@@ -1,0 +1,13 @@
+User - AndrewPadgett
+Access key ID - AKIAUFSCB45T6KLGEMOP
+Secret access key - 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
+
+
+User - KalebSpraker
+Access key ID - AKIAUFSCB45T7LYGMSOK
+Secret access key - 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
+
+
+User - JayFranko
+Access key ID - AKIAUFSCB45T7ZAEGD4D
+Secret access key - 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
