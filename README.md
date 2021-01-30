@@ -8,35 +8,6 @@ Developed in Python
 ### Resources
 - I'm watching this video to figure out how the API stuff works https://www.youtube.com/watch?v=uFsaiEhr1zs
 
-- Files should look like this apparently
-lambda-test.zip/
-├── main.py(lambda entry point containing the lambda_handler method)
-
-├── Folder1/
-
-│ ├── File1
-
-│ ├── File2
-
-│ ├── some_method.py
-
-│ └── docs
-
-├── SomeOtherFolder/
-
-│ ├── File1
-
-│ └── docs
-
-├── package1
-
-├── package2
-
-├── package3
-
-└── package4
-
-
 
 ### Pushing code to AWS Lambda
 
