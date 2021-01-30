@@ -3,6 +3,11 @@ card = {
     'suit' : ' '
 }
 
+# deck = {
+#     'Ace' : ["Heart", "Spade", ""]
+
+
+# }
 
 
 deckSize = 52
@@ -55,5 +60,8 @@ def checkPair():
 
 def checkHighCard():
     print("This function evaluates if the player only has high card\n")
+
+    #for i in range(len(hand)):
+
 
 main()
