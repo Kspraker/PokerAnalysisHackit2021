@@ -1,7 +1,11 @@
+card = {
+    'value' : 0,
+    'suit' : ' '
+}
 
 def main():
     print("Hello, this is program a Texas Analysis\n")
-
+    print(card['value'])
 
 
     deckSize = 52
