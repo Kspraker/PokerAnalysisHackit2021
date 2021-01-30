@@ -8,7 +8,7 @@ class Card:
         self.value = value
         self.color = color
 
-river = list()
+community = list()
 
 colors = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
 
@@ -24,21 +24,30 @@ card = {
 
 deckSize = 52
 
+inPlay = [Card(2, 'Hearts'), Card(3, 'Diamonds'), Card(11, 'Clubs')]
+
 def main():
     print("Hello, this is program a Texas Holdem Game Analysis\n")
     
-    for i in deck:
-        print(i.value)
+    #for i in deck:
+        #print(i.value)
 
-    #for i in range(3):
-        cardVal = input("What is the value of the first card on the river? ")
-        suit = input("What is the suit for the first card on the river? ")
-        river.append(Card(cardVal, suit))
+    # for i in range(3):
+    #     cardVal = input("What is the value of the first card on the river? ")
+    #     suit = input("What is the suit for the first card on the river? ")
+    #     community.append(Card(cardVal, suit))
     
-
+   
+    
+    #checkHighCard()
+    sortCards()
 
 
     #playAgain = input("Do you want to play again? ")
+def sortCards():
+    sorted = list()
+    inPlay.sort(key = lambda x: x.value, reverse = True)
+
 
 def checkCurrentBestHand():
     print("This Function evaluates what the current best hand is based on the current river and your cards\n")
@@ -72,8 +81,14 @@ def checkPair():
 
 def checkHighCard():
     print("This function evaluates if the player only has high card\n")
+    highest = inPlay[0]
 
-    #for i in range(len(hand)):
+    for i in inPlay:
+        if i.value > highest.value:
+            highest = i
+
+    print("Your highest card is " + i)
+
 
 
 main()
