@@ -3,12 +3,24 @@ card = {
     'suit' : ' '
 }
 
+
+
+deckSize = 52
+
 def main():
     print("Hello, this is program a Texas Analysis\n")
     print(card['value'])
+    
+
+    for i in range(3):
+        cardVal = input("What is the value of the first card on the river? ")
+        suit = input("What is the suit for the first card on the river? ")
+    
 
 
-    deckSize = 52
+
+    playAgain = input("Do you want to play again? ")
+
     print(deckSize)
 
 def checkCurrentBestHand():
@@ -42,6 +54,6 @@ def checkPair():
     print("This function evaluates if the player has one pair\n")
 
 def checkHighCard():
-    print("This function evaluates if the player only has high card")
+    print("This function evaluates if the player only has high card\n")
 
 main()
