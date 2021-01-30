@@ -14,4 +14,4 @@ Developed in Python
 2. Run `aws configure`
 3. Type in info from your email
 4. zip code
-5. `aws lambda update-function-code --function-name PokerAnalyzer --zip-file <zip file>
+5. `aws lambda update-function-code --function-name PokerAnalyzer --zip-file <zip file>`
