@@ -1,3 +1,13 @@
+class Card:
+    def __init__(self, value, color):
+        self.value = value
+        self.color = color
+
+river = list()
+
+river.append(Cart("heart", "2"))
+
+
 card = {
     'value' : 0,
     'suit' : ' '
