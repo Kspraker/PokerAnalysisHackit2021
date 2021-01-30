@@ -1,7 +1,10 @@
 
+def main():
+    print("Hello, this is program a Texas Analysis\n")
 
-print("Hello, this is program a Texas Analysis\n")
 
-deckSize = 52
-print(deckSize)
 
+    deckSize = 52
+    print(deckSize)
+
+main()
