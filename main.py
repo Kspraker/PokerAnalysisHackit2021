@@ -1,3 +1,8 @@
+card = {
+    'value' : 0,
+    'suit' : ' '
+}
+
 class Card:
     def __init__(self, value, color):
         self.value = value
@@ -5,13 +10,7 @@ class Card:
 
 river = list()
 
-river.append(Cart("heart", "2"))
-
-
-card = {
-    'value' : 0,
-    'suit' : ' '
-}
+river.append(Card("heart", "2"))
 
 
 
