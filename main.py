@@ -5,7 +5,11 @@ class Card:
 
 river = list()
 
-river.append(Cart("heart", "2"))
+colors = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+
+deck = [Card(value, color) for value in range(1, 14) for color in colors]
+
+#river.append(Card("heart", "2"))
 
 
 card = {
@@ -13,30 +17,23 @@ card = {
     'suit' : ' '
 }
 
-# deck = {
-#     'Ace' : ["Heart", "Spade", ""]
-
-
-# }
-
-
 deckSize = 52
 
 def main():
-    print("Hello, this is program a Texas Analysis\n")
-    print(card['value'])
+    print("Hello, this is program a Texas Holdem Game Analysis\n")
     
+    for i in deck:
+        print(i.value)
 
-    for i in range(3):
+    #for i in range(3):
         cardVal = input("What is the value of the first card on the river? ")
         suit = input("What is the suit for the first card on the river? ")
+        river.append(Card(cardVal, suit))
     
 
 
 
-    playAgain = input("Do you want to play again? ")
-
-    print(deckSize)
+    #playAgain = input("Do you want to play again? ")
 
 def checkCurrentBestHand():
     print("This Function evaluates what the current best hand is based on the current river and your cards\n")
