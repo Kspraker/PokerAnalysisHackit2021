@@ -1,3 +1,8 @@
+card = {
+    'value' : 0,
+    'suit' : ' '
+}
+
 class Card:
     def __init__(self, value, color):
         self.value = value
