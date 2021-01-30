@@ -5,6 +5,8 @@ This program analyzes Texas Holdem' hands and games.
 Developed in Python
 
 
+### Resources
+- I'm watching this video to figure out how the API stuff works https://www.youtube.com/watch?v=uFsaiEhr1zs
 
 
 
