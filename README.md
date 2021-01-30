@@ -11,17 +11,29 @@ Developed in Python
 - Files should look like this apparently
 lambda-test.zip/
 ├── main.py(lambda entry point containing the lambda_handler method)
+
 ├── Folder1/
+
 │ ├── File1
+
 │ ├── File2
+
 │ ├── some_method.py
+
 │ └── docs
+
 ├── SomeOtherFolder/
+
 │ ├── File1
+
 │ └── docs
+
 ├── package1
+
 ├── package2
+
 ├── package3
+
 └── package4
 
 
