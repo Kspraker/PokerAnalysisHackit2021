@@ -63,7 +63,7 @@ def checkCurrentBestHand():
 		results['royalFlushChance'] = RoyalFlushChance()
 	
 	if not checkStraightFlush():
-		results['royalStraightChance'] = StraightFlushChance()
+		results['straightFlushChance'] = StraightFlushChance()
 	
 	if not checkFourOfAKind():
 		results['fourKindChance'] = FourOfAKindChance()
