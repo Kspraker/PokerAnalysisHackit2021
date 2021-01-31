@@ -24,7 +24,7 @@ card = {
 
 deckSize = 52
 
-inPlay = [Card(11, 1), Card(10, 1), Card(9, 1), Card(8, 1), Card(7, 1)]
+inPlay = [Card(11, 1), Card(10, 1), Card(9, 1), Card(8, 1), Card(7, 0)]
 sortedSuits = inPlay
 
 def main():
@@ -43,6 +43,8 @@ def main():
     #checkHighCard()
     sortCards()
     sortSuits()
+
+    print(FlushChance())
 
 
     #playAgain = input("Do you want to play again? ")
@@ -68,10 +70,12 @@ def checkCurrentBestHand():
 def checkRoyalFlush():
     #if checkIfFlush()
     #    return true
+    print('1')
 
 def checkStraightFlush():
     # if checkIfStraight() and checkIfFlush()
     #     return true
+    print('1')
 
 def checkFourOfAKind():
     total = 0
@@ -207,7 +211,27 @@ def FullHouseChance():
     print("1")
 
 def FlushChance():
-    print("1")
+    print("Chance of getting a flush next turn - ", end="")
+
+    hearts = 0
+    diams = 0
+    clubs = 0
+    spades = 0
+    for i in range(0, len(sortedSuits)):
+        if sortedSuits[i].suit == 0:
+            hearts += 1
+        elif sortedSuits[i].suit == 1:
+            diams += 1
+        elif sortedSuits[i].suit == 1:
+            clubs += 1
+        else:
+            spades += 1
+    
+    if hearts == 4 or diams == 4 or clubs == 4 or spades == 4:
+        return 100 * round((9 / (52 - len(inPlay))), 4)
+        
+    else:
+        return 0
 
 def StraightChance():
     print("1")
