@@ -1,56 +1,55 @@
-card = {
-    'value' : 0,
-    'suit' : ' '
-}
+import json
 
 class Card:
     def __init__(self, value, suit):
         self.value = value
         self.suit = suit
 
-community = list()
+results = {
+	'royalFlushChance': 0,
+	'straightFlushChance': 0,
+	'fourKindChance': 0,
+	'fullHouseChance': 0,
+	'flushChance': 0,
+	'straightChance': 0,
+	'threeKindChance': 0,
+	'twoPairChance': 0,
+	'onePairChance': 0
+}
 
 suits = [0, 1, 2, 3]
 # Hearts, Diamonds, Club, Spade 
 deck = [Card(value, suit) for value in range(1, 14) for suit in suits]
 
-#river.append(Card("heart", "2"))
-
-
-card = {
-    'value' : 0,
-    'suit' : ' '
-}
-
 deckSize = 52
 
-inPlay = [Card(13, 1), Card(12, 1), Card(11, 1), Card(3, 1), Card(9, 1), Card(4, 1), Card(1, 1)]
-sortedSuits = inPlay
+inPlay = []
+sortedSuits = []
 flushList = list()
 
-
-def main():
-    print("Hello, this is program a Texas Holdem Game Analysis\n")
-    
-    #for i in deck:
-        #print(i.value)
-
-    # for i in range(3):
-    #     cardVal = input("What is the value of the first card on the river? ")
-    #     suit = input("What is the suit for the first card on the river? ")
-    #     community.append(Card(cardVal, suit))
-    
-   
-    
-    #checkHighCard()
+def lambda_handler(event, context):
+	
+	body = event['body']
+	body = json.loads(body)
+	
+	for i in body:
+		print(i)
+		stuff = i.split()
+		inPlay.append(Card(stuff[0], stuff[1]))
+		
+	sortedSuits = inPlay
     sortCards()
     sortSuits()
 
-    chance = StraightFlushChance()
-    print(chance)
+	return {
+		'statusCode': 200,
+		'headers': {
+		    "Access-Control-Allow-Origin" : "*", # Required for CORS support to work
+		    "Access-Control-Allow-Credentials" : True # Required for cookies, authorization headers with HTTPS 
+		  },
+		'body': json.dumps(results)
+	}
 
-
-    #playAgain = input("Do you want to play again? ")
 def sortCards():
     inPlay.sort(key = lambda x: x.value, reverse = True)
 
@@ -58,15 +57,33 @@ def sortSuits():
     sortedSuits.sort(key = lambda x: x.suit, reverse = True)
 
 def checkCurrentBestHand():
-    checkRoyalFlush()
-    checkStraightFlush()
-    checkFourOfAKind()
-    checkFullHouse()
-    checkFlush()
-    checkStraight()
-    checkThree()
-    checkTwoPair()
-    checkPair()
+    if not checkRoyalFlush():
+        results['royalFlushChance'] = RoyalFlushChance()
+    
+    if not checkStraightFlush():
+        results['royalStraightChance'] = StraightFlushChance()
+    
+    if not checkFourOfAKind():
+        results['fourKindChance'] = FourOfAKindChance()
+
+    if not checkFullHouse():
+        results['fullHouseChance'] = FullHouseChance()
+
+    if not checkFlush():
+        results['flushChance'] = FlushChance()
+
+    if not checkStraight():
+        results['straightChance'] = StraightChance()
+    
+    if not checkThree():
+        results['threeKindChance'] = ThreeOfAKindChance()
+    
+    if not checkTwoPair():
+        results['twoPairChance'] = TwoPairChance()
+
+    if not checkPair():
+        results['onePairChance'] = PairChance()
+    
     checkHighCard()
 
 def checkRoyalFlush():
@@ -192,7 +209,7 @@ def checkStraight():
                 count = count + 1
                 if count == 5:
                     print("You have a straight")
-                    return 
+                    return True
             else:
                 count = 1
 
@@ -206,11 +223,14 @@ def checkStraight():
                 count = count + 1
                 if count == 5:
                     print("You have a straight")
+                    return True
             else:
                 count = 1
             entire += 1
             if entire == (len(removed)*2):
-                break
+                return False
+
+    return False
 
 def checkThree():
     total = 0
@@ -219,12 +239,13 @@ def checkThree():
     # current = inPlay[0].value
     for i in range(len(inPlay)-1):
         if total == 2:
-            break
+            return True
         if inPlay[i].value == inPlay[i+1].value:
             total = total + 1
         else:
             total = 0
 
+    return False
 
 
 def checkTwoPair():
@@ -241,19 +262,21 @@ def checkTwoPair():
             if (removed[j+1].value != None) and (removed[j].value == removed[j+1].value):
                 print("You have a pair of: " + str(firstPair) + "'s and")
                 print("you have a pair of: " + str(removed[j].value) + "'s")
-                break
+                return True
+    
+    return False
 
 def checkPair():
     for i in range(len(inPlay)):
         if (inPlay[i+1].value != None) and (inPlay[i].value == inPlay[i+1].value):
             print("You have a pair of: " + str(inPlay[i].value) + "'s")
-            break
+            return True
+    
+    return False
 
     
-
 def checkHighCard():
     print("Your highest card is " + inPlay[0])
-
 
 
 def RoyalFlushChance():
@@ -465,5 +488,3 @@ def PairChance():
     numerator = 3 * len(inPlay)
 
     return ((numerator/cardsLeft)*100)
-
-main()
