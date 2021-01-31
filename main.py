@@ -24,7 +24,7 @@ card = {
 
 deckSize = 52
 
-inPlay = [Card(11, 1), Card(10, 1), Card(9, 1), Card(8, 1), Card(3, 1), Card(2, 1), Card(5, 1)]
+inPlay = [Card(13, 1), Card(12, 1), Card(11, 1), Card(3, 1), Card(9, 1), Card(4, 1), Card(1, 1)]
 sortedSuits = inPlay
 flushList = list()
 
@@ -55,7 +55,6 @@ def sortCards():
     inPlay.sort(key = lambda x: x.value, reverse = True)
 
 def sortSuits():
-    sorted = list()
     sortedSuits.sort(key = lambda x: x.suit, reverse = True)
 
 def checkCurrentBestHand():
@@ -72,7 +71,6 @@ def checkCurrentBestHand():
 
 def checkRoyalFlush():
     print("This Function evaluates if the current hand is a royal flush based on the current river and your cards\n")
-    count = 1
     ace = 1
     card = 13
     if checkFlush() == True:
@@ -180,23 +178,39 @@ def checkFlush():
 
 def checkStraight():
     # Remember to make case for ace, since it can begin and end
-    flag = True
     count = 1
 
-    for i in range(len(inPlay)-1):
-        if(inPlay[i+1] != None):
-            if inPlay[i].value - 1 == inPlay[i+1].value:
-                count = count + 1
+    removed = inPlay
+    for n in range(len(inPlay)-1):
+        if ((n+1) < len(inPlay)):
+            if inPlay[n].value == inPlay[n+1].value:
+                del removed[n]
 
+    for i in range(len(removed)-1):
+        if ((i+1) < len(removed)):
+            if removed[i].value - 1 == removed[i+1].value:
+                count = count + 1
+                if count == 5:
+                    print("You have a straight")
+                    return 
             else:
                 count = 1
 
-    print(count)
-
-
-
-
-
+    entire = 0
+    j = 0
+    while True:
+        if ((j+1) < len(removed)):
+            if j == (len(removed)-1):
+                j = 0
+            if removed[j].value - 1 == removed[j+1].value:
+                count = count + 1
+                if count == 5:
+                    print("You have a straight")
+            else:
+                count = 1
+            entire += 1
+            if entire == (len(removed)*2):
+                break
 
 def checkThree():
     total = 0
@@ -252,21 +266,27 @@ def RoyalFlushChance():
 def StraightFlushChance():
     cardsLeft = 52 - len(inPlay)
 
+    removed = inPlay
+    for n in range(len(inPlay)-1):
+        if ((n+1) < len(inPlay)):
+            if inPlay[n].value == inPlay[n+1].value:
+                del removed[n]
+
     total = 0
     fourKind = -1
     four = list()
-    for i in range(len(inPlay)-1):
+    for i in range(len(removed)-1):
         print(total)
-        if (inPlay[i].value - 1) == inPlay[i+1].value:
+        if (removed[i].value - 1) == removed[i+1].value:
             total += 1
         else:
             total = 0
         if total == 3:
-            fourKind = inPlay[i].value
-            four.append(inPlay[i-2])
-            four.append(inPlay[i-1])
-            four.append(inPlay[i])
-            four.append(inPlay[i+1])
+            fourKind = removed[i].value
+            four.append(removed[i-2])
+            four.append(removed[i-1])
+            four.append(removed[i])
+            four.append(removed[i+1])
             break
     
     if (fourKind != -1):
@@ -348,9 +368,15 @@ def FlushChance():
 def StraightChance():
     count = 1
 
-    for i in range(len(inPlay)-1):
-        if(inPlay[i+1] != None):
-            if inPlay[i].value - 1 == inPlay[i+1].value:
+    removed = inPlay
+    for n in range(len(inPlay)-1):
+        if ((n+1) < len(inPlay)):
+            if inPlay[n].value == inPlay[n+1].value:
+                del removed[n]
+
+    for i in range(len(removed)-1):
+        if((i+1) < len(removed)):
+            if removed[i].value - 1 == removed[i+1].value:
                 count = count + 1
                 if (count == 4):
                     break
@@ -358,27 +384,27 @@ def StraightChance():
                 count = 1
 
     # four cards in a row
-    cardsLeft = 52 - len(inPlay)
+    cardsLeft = 52 - len(removed)
     if (count == 4):
         return (4/cardsLeft)
 
     count = 1
     # four total cards
-    for i in range(len(inPlay)-1):
-        if((i+1 < len(inPlay))):
-            if inPlay[i].value - 1 == inPlay[i+1].value:
+    for i in range(len(removed)-1):
+        if((i+1 < len(removed))):
+            if removed[i].value - 1 == removed[i+1].value:
                 count = count + 1
             else:
                 count = 1
         if (count == 3):
-            threeRow = inPlay[i].value
+            threeRow = removed[i].value
 
-            if (((i-2) >= 0) and ((threeRow + 3) == inPlay[i-2].value)) and (((i+2) < len(inPlay)) and ((threeRow - 3) == inPlay[i+2].value)):
+            if (((i-2) >= 0) and ((threeRow + 3) == removed[i-2].value)) and (((i+2) < len(removed)) and ((threeRow - 3) == removed[i+2].value)):
                 return ((4/cardsLeft) * (4/cardsLeft))
-            elif (((i-2) >= 0) and ((threeRow + 3) == inPlay[i-2].value)) or (((i+2) < len(inPlay)) and ((threeRow - 3) == inPlay[i+2].value)):
+            elif (((i-2) >= 0) and ((threeRow + 3) == removed[i-2].value)) or (((i+2) < len(removed)) and ((threeRow - 3) == removed[i+2].value)):
                 return (4/cardsLeft)
-        elif ((i+2) < len(inPlay)) and (count == 2) and ((inPlay[i+1].value - 1) != inPlay[i+2].value):
-            if ((inPlay[i+2].value - 1) == inPlay[i+3].value):
+        elif ((i+2) < len(removed)) and (count == 2) and ((removed[i+1].value - 1) != removed[i+2].value):
+            if ((removed[i+2].value - 1) == removed[i+3].value):
                 return (4/cardsLeft)
             
     return 0
