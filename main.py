@@ -275,7 +275,7 @@ def RoyalFlushChance():
         return 0
 
     else:
-        return (1/(deckSize - len(inPlay)))
+        return ((1/(deckSize - len(inPlay)))*100)
     
     # for i in range(len(inPlay)-1):
         
@@ -311,7 +311,7 @@ def StraightFlushChance():
         for j in range(len(four)-1):
             if four[j].suit != four[j+1].suit:
                 return 0
-        return (1/cardsLeft)
+        return ((1/cardsLeft)*100)
 
     return 0
 
@@ -320,13 +320,15 @@ def FourOfAKindChance():
     count = 1
     for i in range(len(inPlay)-1):
         if count == 3:
-            return 1/(deckSize - len(inPlay))
+            return ((1/(deckSize - len(inPlay)))*100)
 
         if inPlay[i].value == inPlay[i+1].value:
             count = count + 1
 
         else:
             count = 1
+    
+    return 0
 
 
 def FullHouseChance():
@@ -347,7 +349,7 @@ def FullHouseChance():
 
     if (threeKind != -1):
         handLeft = len(inPlay) - 3
-        return ((handLeft * 3)/cardsLeft)
+        return (((handLeft * 3)/cardsLeft)*100)
 
 
     firstPair = -1
@@ -368,10 +370,12 @@ def FullHouseChance():
                 break
 
     if (secondPair != -1):
-        return (4/cardsLeft)
+        return ((4/cardsLeft)*100)
+
+    return 0
 
 def FlushChance():
-    print("Chance of getting a flush next turn - ", end="")
+    #print("Chance of getting a flush next turn - ", end="")
 
     hearts = 0
     diams = 0
@@ -414,7 +418,7 @@ def StraightChance():
     # four cards in a row
     cardsLeft = 52 - len(removed)
     if (count == 4):
-        return (4/cardsLeft)
+        return ((4/cardsLeft)*100)
 
     count = 1
     # four total cards
@@ -428,12 +432,12 @@ def StraightChance():
             threeRow = removed[i].value
 
             if (((i-2) >= 0) and ((threeRow + 3) == removed[i-2].value)) and (((i+2) < len(removed)) and ((threeRow - 3) == removed[i+2].value)):
-                return ((4/cardsLeft) * (4/cardsLeft))
+                return (((4/cardsLeft) * (4/cardsLeft))*100)
             elif (((i-2) >= 0) and ((threeRow + 3) == removed[i-2].value)) or (((i+2) < len(removed)) and ((threeRow - 3) == removed[i+2].value)):
-                return (4/cardsLeft)
+                return ((4/cardsLeft)*100)
         elif ((i+2) < len(removed)) and (count == 2) and ((removed[i+1].value - 1) != removed[i+2].value):
             if ((removed[i+2].value - 1) == removed[i+3].value):
-                return (4/cardsLeft)
+                return ((4/cardsLeft)*100)
             
     return 0
 
@@ -445,7 +449,7 @@ def ThreeOfAKindChance():
 
     numerator = 2
 
-    return (numerator/cardsLeft)
+    return ((numerator/cardsLeft)*100)
 
 def TwoPairChance():
     # assuming already have one pair
@@ -453,13 +457,13 @@ def TwoPairChance():
 
     numerator = 3 * len(inPlay)
 
-    return (numerator/cardsLeft)
+    return ((numerator/cardsLeft)*100)
 
 def PairChance():
     cardsLeft = 52 - len(inPlay)
 
     numerator = 3 * len(inPlay)
 
-    return (numerator/cardsLeft)
+    return ((numerator/cardsLeft)*100)
 
 main()
