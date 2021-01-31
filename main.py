@@ -288,7 +288,7 @@ def checkTwoPair():
 	return False
 
 def checkPair():
-	for i in range(len(inPlay)):
+	for i in range(len(inPlay)-1):
 		if (i + 1 < len(inPlay)) and (inPlay[i].value == inPlay[i+1].value):
 			print("You have a pair of: " + str(inPlay[i].value) + "'s")
 			return True
