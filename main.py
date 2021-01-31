@@ -54,21 +54,26 @@ def sortSuits():
     sortedSuits.sort(key = lambda x: x.suit, reverse = True)
 
 def checkCurrentBestHand():
-    print("This Function evaluates what the current best hand is based on the current river and your cards\n")
+    checkRoyalFlush()
+    checkStraightFlush()
+    checkFourOfAKind()
+    checkFullHouse()
+    checkFlush()
+    checkStraight()
+    checkThree()
+    checkTwoPair()
+    checkPair()
+    checkHighCard()
 
 def checkRoyalFlush():
-    print("This Function evaluates if the current hand is a royal flush based on the current river and your cards\n")
     #if checkIfFlush()
     #    return true
 
 def checkStraightFlush():
-    print("This Function evaluates if the current hand is a straight flush based on the current river and your cards\n")
     # if checkIfStraight() and checkIfFlush()
     #     return true
 
 def checkFourOfAKind():
-    print("This Function evaluates if the current hand is a four of a kind based on the current river and your cards\n")
-
     total = 0
     for i in range(len(inPlay)-1):
         if inPlay[i].value == inPlay[i+1].value:
@@ -77,11 +82,11 @@ def checkFourOfAKind():
             total = 0
         if total == 3:
             print("You have four of a kind of: " + str(inPlay[i].value) + "'s")
-            break
+            return True
+
+    return False
 
 def checkFullHouse():
-    print("This Function evaluates if the current hand is a full house based on the current river and your cards\n")
-
     total = 0
     firstPair = -1
     for i in range(len(inPlay)-1):
@@ -99,17 +104,16 @@ def checkFullHouse():
                 del removed[i-1]
             break
 
-    print(total)
-
     if (firstPair != -1):
         for j in range(len(removed)):
             if (removed[j+1].value != None) and (removed[j].value == removed[j+1].value):
-                print("You have three of a kind of: " + str(firstPair) + "'s")
-                print("You have a pair of: " + str(removed[j].value) + "'s")
-                break
+                print("You have three of a kind of: " + str(firstPair) + "'s and")
+                print("you have a pair of: " + str(removed[j].value) + "'s")
+                return True
+
+    return False
 
 def checkFlush():
-    print("This Function evaluates if the current hand is a flush based on the current river and your cards\n")
     total = 1
     
     for i in range(len(sortedSuits)-1):
@@ -124,7 +128,6 @@ def checkFlush():
 
 def checkStraight():
     # Remember to make case for ace, since it can begin and end
-    print("This function evaluates if the player has a straight\n")
     flag = True
     count = 1
 
@@ -144,7 +147,6 @@ def checkStraight():
 
 
 def checkThree():
-    print("This function evaluates if the player has three of a kind\n")
     total = 0
  
     # probably messed up the indexing here, not starting at 0
@@ -162,8 +164,6 @@ def checkThree():
 
 
 def checkTwoPair():
-    print("This function evaluates if the player has two pairs\n")
-
     firstPair = -1
     for i in range(len(inPlay)):
         if (inPlay[i+1].value != None) and (inPlay[i].value == inPlay[i+1].value):
@@ -175,28 +175,50 @@ def checkTwoPair():
     if (firstPair != -1):
         for j in range(len(removed)):
             if (removed[j+1].value != None) and (removed[j].value == removed[j+1].value):
-                print("You have a pair of: " + str(firstPair) + "'s")
-                print("You have a pair of: " + str(removed[j].value) + "'s")
+                print("You have a pair of: " + str(firstPair) + "'s and")
+                print("you have a pair of: " + str(removed[j].value) + "'s")
                 break
 
 def checkPair():
-    print("This function evaluates if the player has one pair\n")
-
     for i in range(len(inPlay)):
         if (inPlay[i+1].value != None) and (inPlay[i].value == inPlay[i+1].value):
             print("You have a pair of: " + str(inPlay[i].value) + "'s")
             break
 
+    
+
 def checkHighCard():
-    print("This function evaluates if the player only has high card\n")
-    highest = inPlay[0]
-
-    for i in inPlay:
-        if i.value > highest.value:
-            highest = i
-
-    print("Your highest card is " + i)
+    print("Your highest card is " + inPlay[0])
 
 
+
+
+
+def RoyalFlushChance():
+    print("1")
+
+def StraightFlushChance():
+    print("1")
+
+def FourOfAKindChance():
+    print("1")
+
+def FullHouseChance():
+    print("1")
+
+def FlushChance():
+    print("1")
+
+def StraightChance():
+    print("1")
+
+def ThreeOfAKindChance():
+    print("1")
+
+def TwoPairChance():
+    print("1")
+
+def PairChance():
+    print("1")
 
 main()
