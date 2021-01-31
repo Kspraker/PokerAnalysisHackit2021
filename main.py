@@ -24,11 +24,7 @@ card = {
 
 deckSize = 52
 
-<<<<<<< HEAD
-inPlay = [Card(13, 1), Card(12, 1), Card(11, 1), Card(10, 1), Card(11, 1), Card(3, 1)]
-=======
 inPlay = [Card(13, 1), Card(12, 1), Card(11, 1), Card(3, 1), Card(9, 1), Card(4, 1), Card(1, 1)]
->>>>>>> 1e2c78b97991bb429b9ba49421c38a360c1ef8b4
 sortedSuits = inPlay
 flushList = list()
 
@@ -50,13 +46,9 @@ def main():
     sortCards()
     sortSuits()
 
-<<<<<<< HEAD
-    print(RoyalFlushChance())
-=======
     chance = StraightFlushChance()
     print(chance)
 
->>>>>>> 1e2c78b97991bb429b9ba49421c38a360c1ef8b4
 
     #playAgain = input("Do you want to play again? ")
 def sortCards():
@@ -202,14 +194,6 @@ def checkStraight():
                     print("You have a straight")
                     return 
             else:
-<<<<<<< HEAD
-                count = 0
-
-
-
-
-
-=======
                 count = 1
 
     entire = 0
@@ -227,7 +211,6 @@ def checkStraight():
             entire += 1
             if entire == (len(removed)*2):
                 break
->>>>>>> 1e2c78b97991bb429b9ba49421c38a360c1ef8b4
 
 def checkThree():
     total = 0
@@ -299,11 +282,6 @@ def RoyalFlushChance():
     #     else:
 
 def StraightFlushChance():
-<<<<<<< HEAD
-
-
-    print("1")
-=======
     cardsLeft = 52 - len(inPlay)
 
     removed = inPlay
@@ -337,7 +315,6 @@ def StraightFlushChance():
 
     return 0
 
->>>>>>> 1e2c78b97991bb429b9ba49421c38a360c1ef8b4
 
 def FourOfAKindChance():
     count = 1
