@@ -24,8 +24,10 @@ card = {
 
 deckSize = 52
 
-inPlay = [Card(11, 1), Card(10, 1), Card(9, 1), Card(8, 1), Card(7, 1)]
+inPlay = [Card(13, 1), Card(12, 1), Card(11, 1), Card(10, 1), Card(2, 1), Card(1, 1)]
 sortedSuits = inPlay
+flushList = list()
+
 
 def main():
     print("Hello, this is program a Texas Holdem Game Analysis\n")
@@ -44,6 +46,8 @@ def main():
     sortCards()
     sortSuits()
 
+    this = checkRoyalFlush()
+    print(this)
 
     #playAgain = input("Do you want to play again? ")
 def sortCards():
@@ -58,13 +62,44 @@ def checkCurrentBestHand():
 
 def checkRoyalFlush():
     print("This Function evaluates if the current hand is a royal flush based on the current river and your cards\n")
-    #if checkIfFlush()
-    #    return true
+    count = 1
+    ace = 1
+    card = 13
+    if checkFlush() == True:
+        
+        for j in sortedSuits:
+            print(j.value)
+        for i in range(len(sortedSuits)-2):
+            if sortedSuits[i].value != card:
+                return False
+            card =  card - 1
+
+        if sortedSuits[len(sortedSuits)-1].value != ace:
+            return False
+
+    else:
+        return False
+
+    return True
 
 def checkStraightFlush():
     print("This Function evaluates if the current hand is a straight flush based on the current river and your cards\n")
-    # if checkIfStraight() and checkIfFlush()
-    #     return true
+    # might be error with something, i forgot what i typed
+    count = 1
+    if checkFlush() == True:
+        flushList.sort(key = lambda x: x.value, reverse = True)
+        for i in range(len(flushList)-1):
+            if flushList[i].value - 1 != flushList[i+1]:
+                count = count + 1
+
+    else:
+        return False
+    
+    if count == 5:
+        return True
+    
+    else:
+        return False
 
 def checkFourOfAKind():
     print("This Function evaluates if the current hand is a four of a kind based on the current river and your cards\n")
@@ -111,16 +146,30 @@ def checkFullHouse():
 def checkFlush():
     print("This Function evaluates if the current hand is a flush based on the current river and your cards\n")
     total = 1
+    end = len(sortedSuits)-1
     
     for i in range(len(sortedSuits)-1):
-        if total == 5:
-            break
+        if total == 4:
+
+            for j in range(5):
+                flushList.append(sortedSuits[end-j])
+
+            # for j in flushList:
+            #     print(j.suit)
+
+            return True
+
         if sortedSuits[i].suit == sortedSuits[i+1].suit:
             total = total + 1
         else:
             total = 1
 
-    print(total)
+    return False
+    # if total == 4:
+    #     return True
+    
+    # else:
+    #     return False
 
 def checkStraight():
     # Remember to make case for ace, since it can begin and end
