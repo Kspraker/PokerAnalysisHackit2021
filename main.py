@@ -24,7 +24,7 @@ card = {
 
 deckSize = 52
 
-inPlay = [Card(11, 1), Card(10, 1), Card(9, 1), Card(8, 1), Card(7, 1)]
+inPlay = [Card(11, 1), Card(10, 1), Card(9, 1), Card(8, 1), Card(3, 1), Card(2, 1), Card(5, 1)]
 sortedSuits = inPlay
 
 def main():
@@ -43,6 +43,9 @@ def main():
     #checkHighCard()
     sortCards()
     sortSuits()
+
+    chance = StraightFlushChance()
+    print(chance)
 
 
     #playAgain = input("Do you want to play again? ")
@@ -66,10 +69,12 @@ def checkCurrentBestHand():
     checkHighCard()
 
 def checkRoyalFlush():
+    print(1)
     #if checkIfFlush()
     #    return true
 
 def checkStraightFlush():
+    print(1)
     # if checkIfStraight() and checkIfFlush()
     #     return true
 
@@ -137,7 +142,7 @@ def checkStraight():
                 count = count + 1
 
             else:
-                count = 0
+                count = 1
 
     print(count)
 
@@ -198,27 +203,142 @@ def RoyalFlushChance():
     print("1")
 
 def StraightFlushChance():
-    print("1")
+    cardsLeft = 52 - len(inPlay)
+
+    total = 0
+    fourKind = -1
+    four = list()
+    for i in range(len(inPlay)-1):
+        print(total)
+        if (inPlay[i].value - 1) == inPlay[i+1].value:
+            total += 1
+        else:
+            total = 0
+        if total == 3:
+            fourKind = inPlay[i].value
+            four.append(inPlay[i-2])
+            four.append(inPlay[i-1])
+            four.append(inPlay[i])
+            four.append(inPlay[i+1])
+            break
+    
+    if (fourKind != -1):
+        for j in range(len(four)-1):
+            if four[j].suit != four[j+1].suit:
+                return 0
+        return (1/cardsLeft)
+
+    return 0
+
 
 def FourOfAKindChance():
     print("1")
 
 def FullHouseChance():
-    print("1")
+    cardsLeft = 52 - len(inPlay)
+    total = 0
+ 
+    # probably messed up the indexing here, not starting at 0
+    # current = inPlay[0].value
+    threeKind = -1
+    for i in range(len(inPlay)-1):
+        if total == 2:
+            threeKind = inPlay[i].value
+            break
+        if inPlay[i].value == inPlay[i+1].value:
+            total = total + 1
+        else:
+            total = 0
+
+    if (threeKind != -1):
+        handLeft = len(inPlay) - 3
+        return ((handLeft * 3)/cardsLeft)
+
+
+    firstPair = -1
+    secondPair = -1
+    for i in range(len(inPlay)):
+        if (inPlay[i+1].value != None) and (inPlay[i].value == inPlay[i+1].value):
+            firstPair = inPlay[i].value
+            removed = inPlay
+            del removed[i]
+            break
+
+    if (firstPair != -1):
+        for j in range(len(removed)):
+            if (removed[j+1].value != None) and (removed[j].value == removed[j+1].value):
+                #print("You have a pair of: " + str(firstPair) + "'s and")
+                #print("you have a pair of: " + str(removed[j].value) + "'s")
+                secondPair = removed[j].value
+                break
+
+    if (secondPair != -1):
+        return (4/cardsLeft)
 
 def FlushChance():
     print("1")
 
 def StraightChance():
-    print("1")
+    count = 1
+
+    for i in range(len(inPlay)-1):
+        if(inPlay[i+1] != None):
+            if inPlay[i].value - 1 == inPlay[i+1].value:
+                count = count + 1
+                if (count == 4):
+                    break
+            else:
+                count = 1
+
+    # four cards in a row
+    cardsLeft = 52 - len(inPlay)
+    if (count == 4):
+        return (4/cardsLeft)
+
+    count = 1
+    # four total cards
+    for i in range(len(inPlay)-1):
+        if((i+1 < len(inPlay))):
+            if inPlay[i].value - 1 == inPlay[i+1].value:
+                count = count + 1
+            else:
+                count = 1
+        if (count == 3):
+            threeRow = inPlay[i].value
+
+            if (((i-2) >= 0) and ((threeRow + 3) == inPlay[i-2].value)) and (((i+2) < len(inPlay)) and ((threeRow - 3) == inPlay[i+2].value)):
+                return ((4/cardsLeft) * (4/cardsLeft))
+            elif (((i-2) >= 0) and ((threeRow + 3) == inPlay[i-2].value)) or (((i+2) < len(inPlay)) and ((threeRow - 3) == inPlay[i+2].value)):
+                return (4/cardsLeft)
+        elif ((i+2) < len(inPlay)) and (count == 2) and ((inPlay[i+1].value - 1) != inPlay[i+2].value):
+            if ((inPlay[i+2].value - 1) == inPlay[i+3].value):
+                return (4/cardsLeft)
+            
+    return 0
+
+        
 
 def ThreeOfAKindChance():
-    print("1")
+    # assuming already have one pair
+    cardsLeft = 52 - len(inPlay)
+
+    numerator = 2
+
+    return (numerator/cardsLeft)
 
 def TwoPairChance():
-    print("1")
+    # assuming already have one pair
+    cardsLeft = 52 - len(inPlay)
+
+    numerator = 3 * len(inPlay)
+
+    return (numerator/cardsLeft)
 
 def PairChance():
-    print("1")
+    cardsLeft = 52 - len(inPlay)
+
+    numerator = 3 * len(inPlay)
+
+    return (numerator/cardsLeft)
 
 main()
