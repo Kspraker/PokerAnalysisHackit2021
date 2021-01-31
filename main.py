@@ -26,6 +26,8 @@ deckSize = 52
 
 inPlay = [Card(11, 1), Card(10, 1), Card(9, 1), Card(8, 1), Card(3, 1), Card(2, 1), Card(5, 1)]
 sortedSuits = inPlay
+flushList = list()
+
 
 def main():
     print("Hello, this is program a Texas Holdem Game Analysis\n")
@@ -69,14 +71,45 @@ def checkCurrentBestHand():
     checkHighCard()
 
 def checkRoyalFlush():
-    print(1)
-    #if checkIfFlush()
-    #    return true
+    print("This Function evaluates if the current hand is a royal flush based on the current river and your cards\n")
+    count = 1
+    ace = 1
+    card = 13
+    if checkFlush() == True:
+        
+        for j in sortedSuits:
+            print(j.value)
+        for i in range(len(sortedSuits)-2):
+            if sortedSuits[i].value != card:
+                return False
+            card =  card - 1
+
+        if sortedSuits[len(sortedSuits)-1].value != ace:
+            return False
+
+    else:
+        return False
+
+    return True
 
 def checkStraightFlush():
-    print(1)
-    # if checkIfStraight() and checkIfFlush()
-    #     return true
+    print("This Function evaluates if the current hand is a straight flush based on the current river and your cards\n")
+    # might be error with something, i forgot what i typed
+    count = 1
+    if checkFlush() == True:
+        flushList.sort(key = lambda x: x.value, reverse = True)
+        for i in range(len(flushList)-1):
+            if flushList[i].value - 1 != flushList[i+1]:
+                count = count + 1
+
+    else:
+        return False
+    
+    if count == 5:
+        return True
+    
+    else:
+        return False
 
 def checkFourOfAKind():
     total = 0
@@ -120,16 +153,30 @@ def checkFullHouse():
 
 def checkFlush():
     total = 1
+    end = len(sortedSuits)-1
     
     for i in range(len(sortedSuits)-1):
-        if total == 5:
-            break
+        if total == 4:
+
+            for j in range(5):
+                flushList.append(sortedSuits[end-j])
+
+            # for j in flushList:
+            #     print(j.suit)
+
+            return True
+
         if sortedSuits[i].suit == sortedSuits[i+1].suit:
             total = total + 1
         else:
             total = 1
 
-    print(total)
+    return False
+    # if total == 4:
+    #     return True
+    
+    # else:
+    #     return False
 
 def checkStraight():
     # Remember to make case for ace, since it can begin and end
@@ -276,7 +323,27 @@ def FullHouseChance():
         return (4/cardsLeft)
 
 def FlushChance():
-    print("1")
+    print("Chance of getting a flush next turn - ", end="")
+
+    hearts = 0
+    diams = 0
+    clubs = 0
+    spades = 0
+    for i in range(0, len(sortedSuits)):
+        if sortedSuits[i].suit == 0:
+            hearts += 1
+        elif sortedSuits[i].suit == 1:
+            diams += 1
+        elif sortedSuits[i].suit == 1:
+            clubs += 1
+        else:
+            spades += 1
+    
+    if hearts == 4 or diams == 4 or clubs == 4 or spades == 4:
+        return 100 * round((9 / (52 - len(inPlay))), 4)
+        
+    else:
+        return 0
 
 def StraightChance():
     count = 1
