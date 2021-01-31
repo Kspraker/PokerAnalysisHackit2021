@@ -471,20 +471,20 @@ def ThreeOfAKindChance():
 
 	numerator = 2
 
-    if checkPair == False:
-        return 0
-    else:
-        return ((numerator/cardsLeft)*100)
+	if checkPair == False:
+		return 0
+	else:
+		return ((numerator/cardsLeft)*100)
 
 def TwoPairChance():
 	cardsLeft = 52 - len(inPlay)
 
 	numerator = 3 * (len(inPlay) - 2)
 
-    if checkPair == False:
-        return 0
-    else:
-        return ((numerator/cardsLeft)*100)
+	if checkPair == False:
+		return 0
+	else:
+		return ((numerator/cardsLeft)*100)
 
 def PairChance():
 	cardsLeft = 52 - len(inPlay)
