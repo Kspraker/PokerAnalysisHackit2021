@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<title>Poker Bot</title>
+	</head>
+	<body>
+		<div class="container pt-5">
+			<div class="row">
+				<div class="col-sm-4 text-center">
+					<h2>Card 1</h2>
+				</div>
+				<div class="col-sm-4 text-center">
+					<button type="button" class="btn btn-danger" id="reset">
+						Reset Game
+					</button>
+				</div>
+				<div class="col-sm-4 text-center">
+					<h2>Card 2</h2>
+				</div>
+			</div>
+			<div class="row pb-5">
+				<div class="col-sm-2">
+					<select class="custom-select flop flop1suit">
+						<option defaultSelected hidden>Suit</option>
+						<option value="heart">Heart</option>
+						<option value="diamond">Diamond</option>
+						<option value="spade">Spade</option>
+						<option value="club">Club</option>
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<select class="custom-select flop flop1value">
+						<option defaultSelected hidden>Number</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="jack">Jack</option>
+						<option value="queen">Queen</option>
+						<option value="king">King</option>
+						<option value="ace">Ace (high or low)</option>
+					</select>
+				</div>
+				<div class="col-sm-4"></div>
+				<div class="col-sm-2">
+					<select class="custom-select flop flop2suit">
+						<option defaultSelected hidden>Suit</option>
+						<option value="heart">Heart</option>
+						<option value="diamond">Diamond</option>
+						<option value="spade">Spade</option>
+						<option value="club">Club</option>
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<select class="custom-select flop flop2value">
+						<option defaultSelected hidden>Number</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="jack">Jack</option>
+						<option value="queen">Queen</option>
+						<option value="king">King</option>
+						<option value="ace">Ace (high or low)</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="row pt-5">
+				<div class="col text-center">
+					<h2>Flop</h2>
+				</div>
+			</div>
+			<div class="row pb-5">
+				<div class="col">
+					<select class="custom-select flop flop3suit">
+						<option defaultSelected hidden>Suit</option>
+						<option value="heart">Heart</option>
+						<option value="diamond">Diamond</option>
+						<option value="spade">Spade</option>
+						<option value="club">Club</option>
+					</select>
+				</div>
+				<div class="col">
+					<select class="custom-select flop flop3value">
+						<option defaultSelected hidden>Number</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="jack">Jack</option>
+						<option value="queen">Queen</option>
+						<option value="king">King</option>
+						<option value="ace">Ace (high or low)</option>
+					</select>
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col">
+					<select class="custom-select flop flop4suit">
+						<option defaultSelected hidden>Suit</option>
+						<option value="heart">Heart</option>
+						<option value="diamond">Diamond</option>
+						<option value="spade">Spade</option>
+						<option value="club">Club</option>
+					</select>
+				</div>
+				<div class="col">
+					<select class="custom-select flop flop4value">
+						<option defaultSelected hidden>Number</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="jack">Jack</option>
+						<option value="queen">Queen</option>
+						<option value="king">King</option>
+						<option value="ace">Ace (high or low)</option>
+					</select>
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col">
+					<select class="custom-select flop flop5suit">
+						<option defaultSelected hidden>Suit</option>
+						<option value="heart">Heart</option>
+						<option value="diamond">Diamond</option>
+						<option value="spade">Spade</option>
+						<option value="club">Club</option>
+					</select>
+				</div>
+				<div class="col">
+					<select class="custom-select flop flop5value">
+						<option defaultSelected hidden>Number</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="jack">Jack</option>
+						<option value="queen">Queen</option>
+						<option value="king">King</option>
+						<option value="ace">Ace (high or low)</option>
+					</select>
+				</div>
+			</div>
+			<div class="row pt-5">
+				<div class="col text-center">
+					<h2>Turn</h2>
+				</div>
+				<div class="col text-center">
+					<h2>River</h2>
+				</div>
+			</div>
+			<div class="row pb-5">
+				<div class="col">
+					<select class="custom-select turn turnsuit">
+						<option defaultSelected hidden>Suit</option>
+						<option value="heart">Heart</option>
+						<option value="diamond">Diamond</option>
+						<option value="spade">Spade</option>
+						<option value="club">Club</option>
+					</select>
+				</div>
+				<div class="col">
+					<select class="custom-select turn turnvalue">
+						<option defaultSelected hidden>Number</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="jack">Jack</option>
+						<option value="queen">Queen</option>
+						<option value="king">King</option>
+						<option value="ace">Ace (high or low)</option>
+					</select>
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col">
+					<select class="custom-select river riversuit">
+						<option defaultSelected hidden>Suit</option>
+						<option value="heart">Heart</option>
+						<option value="diamond">Diamond</option>
+						<option value="spade">Spade</option>
+						<option value="club">Club</option>
+					</select>
+				</div>
+				<div class="col">
+					<select class="custom-select river riverhand">
+						<option defaultSelected hidden>Number</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="jack">Jack</option>
+						<option value="queen">Queen</option>
+						<option value="king">King</option>
+						<option value="ace">Ace (high or low)</option>
+					</select>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-9 text-center font-weight-bold">
+							<h3>Example Hands</h3>
+							<br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center">
+							<p>Royal Flush</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">10</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">J</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">Q</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">K</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">A</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="royalFlushChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Straight Flush</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">6</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">9</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">10</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="straightFlushChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Four of a Kind</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">9</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="fourKindChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Full House</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="fullHouseChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Flush</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">3</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">9</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">J</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">K</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="flushChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Straight</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">6</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">9</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">10</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="straightChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Three of a Kind</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">K</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="threeKindChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Two Pair</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">10</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">10</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">5</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">5</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">3</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="twoPairChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>One Pair</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">5</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">6</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">3</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="onePairChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>High Card</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">5</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">J</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">K</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-6">
+					<div class="row">
+						<div class="col text-center font-weight-bold mb-3">
+							<h3>Your Hand</h3>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2" id="1cardvalue"></p>
+							<span style="font-size:300%;color:red;" id="1cardsuit">
+								
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2" id="2cardvalue"></p>
+							<span style="font-size:300%;color:red;" id="2cardsuit">
+								
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2" id="3cardvalue"></p>
+							<span style="font-size:300%;color:red;" id="3cardsuit">
+								
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2" id="4cardvalue"></p>
+							<span style="font-size:300%;color:red;" id="4cardsuit">
+								
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2" id="5cardvalue"></p>
+							<span style="font-size:300%;color:red;" id="5cardsuit">
+								
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2" id="6cardvalue"></p>
+							<span style="font-size:300%;color:red;" id="6cardsuit">
+								
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2" id="7cardvalue"></p>
+							<span style="font-size:300%;color:red;" id="7cardsuit">
+								
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script src="index.js"></script>
