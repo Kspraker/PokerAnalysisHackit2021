@@ -24,7 +24,7 @@ card = {
 
 deckSize = 52
 
-inPlay = [Card(13, 1), Card(12, 1), Card(11, 1), Card(10, 1), Card(2, 1), Card(1, 1)]
+inPlay = [Card(13, 1), Card(12, 1), Card(11, 1), Card(10, 1), Card(11, 1), Card(3, 1)]
 sortedSuits = inPlay
 flushList = list()
 
@@ -46,8 +46,7 @@ def main():
     sortCards()
     sortSuits()
 
-    this = checkRoyalFlush()
-    print(this)
+    print(RoyalFlushChance())
 
     #playAgain = input("Do you want to play again? ")
 def sortCards():
@@ -190,8 +189,6 @@ def checkStraight():
             else:
                 count = 0
 
-    print(count)
-
 
 
 
@@ -209,8 +206,6 @@ def checkThree():
             total = total + 1
         else:
             total = 0
-
-    print(total)
 
 
 
@@ -243,16 +238,48 @@ def checkHighCard():
 
 
 
-
-
 def RoyalFlushChance():
-    print("1")
+    noDupes = inPlay
+    for n in range(len(inPlay)-1):
+        if(n+1)<len(inPlay):
+            if inPlay[n].value == inPlay[n+1].value:
+                del noDupes[n]
+    if noDupes[0].value != 13 and noDupes[1] != 12:
+        return 0
+
+    elif noDupes[1].value != 12 and noDupes[2] != 11:
+        return 0
+    
+    elif noDupes[2].value != 11 and noDupes[3] != 10:
+        return 0
+
+    elif noDupes[0].value != 13 and noDupes[len(noDupes)-1] != 1:
+        return 0
+
+    else:
+        return (1/(deckSize - len(inPlay)))
+    
+    # for i in range(len(inPlay)-1):
+        
+    #     else:
 
 def StraightFlushChance():
+
+
     print("1")
 
 def FourOfAKindChance():
-    print("1")
+    count = 1
+    for i in range(len(inPlay)-1):
+        if count == 3:
+            return 1/(deckSize - len(inPlay))
+
+        if inPlay[i].value == inPlay[i+1].value:
+            count = count + 1
+
+        else:
+            count = 1
+
 
 def FullHouseChance():
     print("1")
