@@ -18,13 +18,17 @@
 	<body>
 		<div class="container pt-5">
 			<div class="row">
+				<div class="col text-center">
+					<button type="button" class="btn btn-danger" id="reset">
+						Reset Game
+					</button>
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-sm-4 text-center">
 					<h2>Card 1</h2>
 				</div>
 				<div class="col-sm-4 text-center">
-					<button type="button" class="btn btn-danger" id="reset">
-						Reset Game
-					</button>
 				</div>
 				<div class="col-sm-4 text-center">
 					<h2>Card 2</h2>
@@ -244,14 +248,18 @@
 					</select>
 				</div>
 			</div>
-			<div class="row mt-5">
-				<div class="col-sm-4">
+			<div class="row">
+				<div class="col">
 					<div class="row">
-						<div class="col-sm-9 text-center font-weight-bold">
+						<div class="col-sm-12 text-center font-weight-bold">
 							<h3>Example Hands</h3>
 							<br>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
 					<div class="row">
 						<div class="col-sm-9 text-center">
 							<p>Royal Flush</p>
@@ -290,46 +298,6 @@
 						</div>
 						<div class="col text-right">
 							<p style="margin-top:75%;margin-bottom:0;" id="royalFlushChance">-- %</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-9 text-center mt-4">
-							<p>Straight Flush</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">6</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">7</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">8</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">9</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">10</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-right">
-							<p style="margin-top:75%;margin-bottom:0;" id="straightFlushChance">-- %</p>
 						</div>
 					</div>
 					<div class="row">
@@ -374,46 +342,6 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-9 text-center mt-4">
-							<p>Full House</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">2</p>
-							<span style="font-size:300%;color:red;">
-								&diams;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">2</p>
-							<span style="font-size:300%;color:black;">
-								&spades;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">2</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">8</p>
-							<span style="font-size:300%;color:black;">
-								&clubs;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">8</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-right">
-							<p style="margin-top:75%;margin-bottom:0;" id="fullHouseChance">-- %</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-9 text-center mt-4">
 							<p>Flush</p>
 						</div>
 					</div>
@@ -450,46 +378,6 @@
 						</div>
 						<div class="col text-right">
 							<p style="margin-top:75%;margin-bottom:0;" id="flushChance">-- %</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-9 text-center mt-4">
-							<p>Straight</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">6</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">7</p>
-							<span style="font-size:300%;color:black;">
-								&clubs;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">8</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">9</p>
-							<span style="font-size:300%;color:red;">
-								&diams;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">10</p>
-							<span style="font-size:300%;color:black;">
-								&spades;
-							</span>
-						</div>
-						<div class="col text-right">
-							<p style="margin-top:75%;margin-bottom:0;" id="straightChance">-- %</p>
 						</div>
 					</div>
 					<div class="row">
@@ -534,6 +422,169 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-9 text-center mt-4">
+							<p>One Pair</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">5</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">6</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">3</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="onePairChance">-- %</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4"></div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-9 text-center">
+							<p>Straight Flush</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">6</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">9</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">10</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="straightFlushChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Full House</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">2</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="fullHouseChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
+							<p>Straight</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">6</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">7</p>
+							<span style="font-size:300%;color:black;">
+								&clubs;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">8</p>
+							<span style="font-size:300%;color:red;">
+								&hearts;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">9</p>
+							<span style="font-size:300%;color:red;">
+								&diams;
+							</span>
+						</div>
+						<div class="col text-center px-0" style="border: 2px solid;">
+							<p class="mb-0 mt-2">10</p>
+							<span style="font-size:300%;color:black;">
+								&spades;
+							</span>
+						</div>
+						<div class="col text-right">
+							<p style="margin-top:75%;margin-bottom:0;" id="straightChance">-- %</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-9 text-center mt-4">
 							<p>Two Pair</p>
 						</div>
 					</div>
@@ -574,46 +625,6 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-9 text-center mt-4">
-							<p>One Pair</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">7</p>
-							<span style="font-size:300%;color:red;">
-								&diams;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">7</p>
-							<span style="font-size:300%;color:black;">
-								&spades;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">5</p>
-							<span style="font-size:300%;color:red;">
-								&hearts;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">6</p>
-							<span style="font-size:300%;color:black;">
-								&clubs;
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2">3</p>
-							<span style="font-size:300%;color:red;">
-								&diams;
-							</span>
-						</div>
-						<div class="col text-right">
-							<p style="margin-top:75%;margin-bottom:0;" id="onePairChance">-- %</p>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-9 text-center mt-4">
 							<p>High Card</p>
 						</div>
 					</div>
@@ -649,58 +660,6 @@
 							</span>
 						</div>
 						<div class="col text-right">
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-2"></div>
-				<div class="col-sm-6">
-					<div class="row">
-						<div class="col text-center font-weight-bold mb-3">
-							<h3>Your Hand</h3>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2" id="1cardvalue"></p>
-							<span style="font-size:300%;color:red;" id="1cardsuit">
-								
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2" id="2cardvalue"></p>
-							<span style="font-size:300%;color:red;" id="2cardsuit">
-								
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2" id="3cardvalue"></p>
-							<span style="font-size:300%;color:red;" id="3cardsuit">
-								
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2" id="4cardvalue"></p>
-							<span style="font-size:300%;color:red;" id="4cardsuit">
-								
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2" id="5cardvalue"></p>
-							<span style="font-size:300%;color:red;" id="5cardsuit">
-								
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2" id="6cardvalue"></p>
-							<span style="font-size:300%;color:red;" id="6cardsuit">
-								
-							</span>
-						</div>
-						<div class="col text-center px-0" style="border: 2px solid;">
-							<p class="mb-0 mt-2" id="7cardvalue"></p>
-							<span style="font-size:300%;color:red;" id="7cardsuit">
-								
-							</span>
 						</div>
 					</div>
 				</div>
