@@ -2,7 +2,7 @@
 
 Website - <http://texascode-em.tech>
 
-This program analyzes Texas Holdem' hands and games.
+This program analyzes Texas Hold 'em hands and games.
 
 ## Tools/Technology
 - AWS Lambda/API Gateway
