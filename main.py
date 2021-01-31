@@ -35,7 +35,7 @@ def lambda_handler(event, context):
 	for i in body:
 		print(i)
 		stuff = i.split()
-		inPlay.append(Card(int(stuff[0]), int(stuff[1])))
+		inPlay.append(Card(int(stuff[1]), int(stuff[0])))
 		
 	sortedSuits = inPlay
 	sortCards()
@@ -59,14 +59,33 @@ def sortSuits():
 	sortedSuits.sort(key = lambda x: x.suit, reverse = True)
 
 def checkCurrentBestHand():
+	for card in inPlay:
+		print(card.suit)
+		print(card.value)
+		print('.')
 	if not checkRoyalFlush():
 		results['royalFlushChance'] = RoyalFlushChance()
 	
+	for card in inPlay:
+		print(card.suit)
+		print(card.value)
+		print('.')
+	
 	if not checkStraightFlush():
 		results['straightFlushChance'] = StraightFlushChance()
+		
+	for card in inPlay:
+		print(card.suit)
+		print(card.value)
+		print('.')
 	
 	if not checkFourOfAKind():
 		results['fourKindChance'] = FourOfAKindChance()
+		
+	for card in inPlay:
+		print(card.suit)
+		print(card.value)
+		print('.')
 
 	if not checkFullHouse():
 		results['fullHouseChance'] = FullHouseChance()
@@ -151,7 +170,7 @@ def checkFullHouse():
 			total = 0
 		if total == 2:
 			firstPair = inPlay[i].value
-			removed = inPlay
+			removed = inPlay[:]
 			del removed[i]
 			if (i+1) < len(inPlay):
 				del removed[i+1]
@@ -199,10 +218,10 @@ def checkStraight():
 	# Remember to make case for ace, since it can begin and end
 	count = 1
 
-	removed = inPlay
-	for n in range(len(inPlay)-1):
-		if ((n+1) < len(inPlay)):
-			if inPlay[n].value == inPlay[n+1].value:
+	removed = inPlay[:]
+	for n in range(len(removed)-1):
+		if ((n+1) < len(removed)):
+			if removed[n].value == removed[n+1].value:
 				del removed[n]
 
 	for i in range(len(removed)-1):
@@ -255,13 +274,13 @@ def checkTwoPair():
 	for i in range(len(inPlay)):
 		if (i + 1 < len(inPlay)) and (inPlay[i].value == inPlay[i+1].value):
 			firstPair = inPlay[i].value
-			removed = inPlay
+			removed = inPlay[:]
 			del removed[i]
 			break
 
 	if (firstPair != -1):
 		for j in range(len(removed)):
-			if (i + 1 < len(inPlay)) and (removed[j].value == removed[j+1].value):
+			if (j + 1 < len(removed)) and (removed[j].value == removed[j+1].value):
 				print("You have a pair of: " + str(firstPair) + "'s and")
 				print("you have a pair of: " + str(removed[j].value) + "'s")
 				return True
@@ -282,10 +301,10 @@ def checkHighCard():
 
 
 def RoyalFlushChance():
-	noDupes = inPlay
-	for n in range(len(inPlay)-1):
-		if(n+1)<len(inPlay):
-			if inPlay[n].value == inPlay[n+1].value:
+	noDupes = inPlay[:]
+	for n in range(len(noDupes)-1):
+		if(n+1) < len(noDupes):
+			if noDupes[n].value == noDupes[n+1].value:
 				del noDupes[n]
 	if noDupes[0].value != 13 and noDupes[1] != 12:
 		return 0
@@ -307,10 +326,10 @@ def RoyalFlushChance():
 def StraightFlushChance():
 	cardsLeft = 52 - len(inPlay)
 
-	removed = inPlay
-	for n in range(len(inPlay)-1):
-		if ((n+1) < len(inPlay)):
-			if inPlay[n].value == inPlay[n+1].value:
+	removed = inPlay[:]
+	for n in range(len(removed)-1):
+		if ((n+1) < len(removed)):
+			if removed[n].value == removed[n+1].value:
 				del removed[n]
 
 	total = 0
@@ -380,13 +399,13 @@ def FullHouseChance():
 	for i in range(len(inPlay)):
 		if (i + 1 < len(inPlay)) and (inPlay[i].value == inPlay[i+1].value):
 			firstPair = inPlay[i].value
-			removed = inPlay
+			removed = inPlay[:]
 			del removed[i]
 			break
 
 	if (firstPair != -1):
 		for j in range(len(removed)):
-			if (i + 1 < len(inPlay)) and (removed[j].value == removed[j+1].value):
+			if (j + 1 < len(removed)) and (removed[j].value == removed[j+1].value):
 				#print("You have a pair of: " + str(firstPair) + "'s and")
 				#print("you have a pair of: " + str(removed[j].value) + "'s")
 				secondPair = removed[j].value
@@ -423,10 +442,10 @@ def FlushChance():
 def StraightChance():
 	count = 1
 
-	removed = inPlay
-	for n in range(len(inPlay)-1):
-		if ((n+1) < len(inPlay)):
-			if inPlay[n].value == inPlay[n+1].value:
+	removed = inPlay[:]
+	for n in range(len(removed)-1):
+		if ((n+1) < len(removed)):
+			if removed[n].value == removed[n+1].value:
 				del removed[n]
 
 	for i in range(len(removed)-1):
@@ -467,20 +486,24 @@ def StraightChance():
 		
 
 def ThreeOfAKindChance():
-	# assuming already have one pair
 	cardsLeft = 52 - len(inPlay)
 
 	numerator = 2
 
-	return ((numerator/cardsLeft)*100)
+	if checkPair == False:
+		return 0
+	else:
+		return ((numerator/cardsLeft)*100)
 
 def TwoPairChance():
-	# assuming already have one pair
 	cardsLeft = 52 - len(inPlay)
 
-	numerator = 3 * len(inPlay)
+	numerator = 3 * (len(inPlay) - 2)
 
-	return ((numerator/cardsLeft)*100)
+	if checkPair == False:
+		return 0
+	else:
+		return ((numerator/cardsLeft)*100)
 
 def PairChance():
 	cardsLeft = 52 - len(inPlay)
