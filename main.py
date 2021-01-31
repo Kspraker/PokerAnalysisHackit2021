@@ -44,8 +44,6 @@ def main():
     sortCards()
     sortSuits()
 
-    print(FlushChance())
-
 
     #playAgain = input("Do you want to play again? ")
 def sortCards():
